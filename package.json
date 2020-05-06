@@ -1,0 +1,23 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christoph-jeanluc-schneider/ls.git"
+  },
+  "author": "Christoph Jean-Luc Schneider",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^7.0.1",
+    "cookie-parser": "^1.4.5",
+    "diskusage": "^1.1.3",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "hash.js": "^1.1.7",
+    "helmet": "^3.22.0",
+    "mkdirp": "^1.0.4",
+    "pug": "^2.0.4",
+    "uuid": "^8.0.0"
+  }
+}
