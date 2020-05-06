@@ -1,4 +1,13 @@
 extends /common/layout.pug
 
 block view
-    p Login
+    section
+        h1 Login
+        if error
+            p.error=error
+        form(action="/api/login" method="post")
+            input(type="text" name="username" placeholder="username")
+            br
+            input(type="password" name="password" placeholder="password")
+            br
+            button(type="submit") Log in

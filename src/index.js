@@ -10,6 +10,7 @@ if( !fs.existsSync( wwwroot ) )
 if( !fs.existsSync( tmp ) )
     fs.mkdirSync( tmp );
 
+require( "./modules/database.js" ).init();
 require( "./modules/user.js" );
 require( "./modules/file.js" );
 require( "./server.js" );

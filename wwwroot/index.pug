@@ -1,4 +1,8 @@
 extends /common/layout.pug
 
 block view
-    h1 Hello World!
+    section
+        if !user_logged_in
+            a.float-right.button(href="/login") Log in
+        h1=title
+        hr
