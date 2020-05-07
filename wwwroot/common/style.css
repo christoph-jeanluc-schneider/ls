@@ -24,7 +24,7 @@ hr {
 
 a {
     text-decoration: none;
-    color: #0066cc;
+    color: #0080ff;
     cursor: pointer;
 }
 a:hover {
@@ -42,11 +42,11 @@ button, .button {
     cursor: pointer;
 }
 button:hover, .button:hover {
-    background-color: #f0f7ff;
+    background-color: #f8f8f8;
     text-decoration: none;
 }
 button:focus, .button:focus {
-    border-color: #0066cc;
+    border-color: #0080ff;
 }
 button:active, .button:active {
     transform: translateY(1px);
@@ -63,7 +63,7 @@ input {
     border: 1px solid #e0e0e0;
 }
 input:focus {
-    border-color: #0066cc;
+    border-color: #0080ff;
 }
 
 .error {

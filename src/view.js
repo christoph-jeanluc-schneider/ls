@@ -16,8 +16,8 @@ router.get( "/login", ( req, res ) => {
 } )
 
 router.get( "/", ( req, res, next ) => {
-    if( req.user ) private( req, res );
-    else public( req, res );
+    if( req.user ) public( req, res );
+    else private( req, res );
 } )
 
 function private( req, res ) {
