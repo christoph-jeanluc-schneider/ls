@@ -71,6 +71,17 @@ input:focus {
     font-weight: bold;
 }
 
+.warn {
+    color: #ff7b00;
+}
+
+.block { display: block; }
+.inline-block { display: inline-block; }
+
+.mr {
+    margin-right: 12px;
+}
+
 section {
     max-width: 900px;
     margin: 24px auto;
@@ -78,4 +89,31 @@ section {
 
 .float-right {
     float: right;
+}
+
+header {
+    border-bottom: 1px solid #e0e0e0;
+}
+header div {
+    max-width: 900px;
+    margin: 24px auto 8px auto;
+}
+header h1 {
+    margin: 8px 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #e0e0e0;
+}
+footer div {
+    max-width: 900px;
+    margin: 8px auto;
+}
+footer p {
+    font-size: 12px;
+    margin: 4px 0;
 }

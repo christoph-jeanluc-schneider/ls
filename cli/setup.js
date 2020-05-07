@@ -5,6 +5,7 @@ var connector = require( "better-sqlite3" );
 var random = require( "../src/util/random.js" );
 
 const wwwroot = path.join( __dirname, "../wwwroot" );
+const root_dir = path.join( __dirname, "../tmp" );
 const tmp = path.join( __dirname, "../tmp" );
 const data = path.join( __dirname, "../data" );
 const configfile = path.join( __dirname, "../config.json" );
@@ -25,7 +26,8 @@ if( !fs.existsSync( configfile ) )
     fs.writeFileSync( configfile, JSON.stringify( {
         port: 4443,
         key: random.string( 32 ),
-        title: "LS - abelade.ch"
+        title: "LS - abelade.ch",
+        root_dir: root_dir
     }, null, 4 ) );
 
 const script = fs.readFileSync( init_script_path ).toString();

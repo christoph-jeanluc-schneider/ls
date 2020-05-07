@@ -19,9 +19,8 @@ app.set( "view engine", "pug" );
 app.locals.basedir = wwwroot;
 app.set( "views", wwwroot );
 
-app.use( express.static( wwwroot ) );
-
 app.use( cookies.parse_user );
+app.use( "/api", require( "./api.js" ) );
 app.use( require( "./view.js" ) );
 
 http.createServer( app ).listen( config.port, () => {

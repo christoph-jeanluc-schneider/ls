@@ -1,8 +1,38 @@
 extends /common/layout.pug
 
 block view
+    header
+        div
+            if !user_logged_in
+                a.float-right.button(href="/login") Log in
+            h1=title
+
     section
-        if !user_logged_in
-            a.float-right.button(href="/login") Log in
-        h1=title
-        hr
+        button.mr create folder
+        button.mr upload file
+
+    section
+        if dir_info.parent
+            p
+                span &#128194;&nbsp;
+                a(href="/?dir="+dir_info.parent ) ..
+
+        each directory in dir_info.directories
+            p
+                span &#128194;&nbsp;
+                a(href="/?dir="+directory.path )=directory.name
+
+        each file in dir_info.files
+            p
+                span &#128196;&nbsp;
+                a(href="/download?file="+file.path download=file.name )=file.name
+
+    if user_logged_in
+        footer
+            div
+                p
+                    b.inline-block(style="width: 100px") User:&nbsp;
+                    span=user.username
+                p
+                    b.inline-block(style="width: 100px") Diskspace:&nbsp;
+                    span!=diskspace

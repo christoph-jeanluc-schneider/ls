@@ -10,15 +10,15 @@ var queries = {
 };
 
 exports.getById = ( id ) => {
-    return queries.getUserWithId.get( id );
+    return queries.getById.get( id );
 };
 
 exports.getByUsername = ( username ) => {
-    return queries.getUserWithUsername.get( username );
+    return queries.getByUsername.get( username );
 };
 
 exports.create = ( username, password ) => {
-    let user = queries.getUserWithUsername.get( username );
+    let user = queries.getByUsername.get( username );
     if( user && user.id ) return null;
 
     let id = random.guid();
@@ -34,7 +34,7 @@ exports.delete = ( id, ) => {
 };
 
 exports.check = ( username, password ) => {
-    let user = queries.getUserWithUsername.get( username );
+    let user = queries.getByUsername.get( username );
     if( user && user.id && crypto.checkPassword( password, user.password, user.salt ) )
         return user.id;
     else return null;

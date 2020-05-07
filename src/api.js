@@ -6,10 +6,29 @@ var path = require( "path" );
 var formidable = require( "express-formidable" );
 var mkdirp = require( "mkdirp" );
 
-var file = require( "./modules/file.js" );
+var user = require( "./modules/user.js" );
 var escape = require( "./util/escape.js" );
+var crypto = require( "./util/crypto.js" );
 
-const wwwroot = path.join( __dirname, "../wwwroot" );
+const config = require( "../config.json" );
+
+router.get( "/logout", ( req, res ) => {
+    res.clearCookie( "user" );
+    res.redirect( "/" );
+} );
+
+router.post( "/login", ( req, res ) => {
+    if( user.check( req.body.username, req.body.password ) ) {
+        let _user = user.getByUsername( req.body.username );
+        let cookie_content = crypto.encrypt( _user.id, config.key );
+        res.cookie( "user", cookie_content,  {
+            maxAge: 1000 * 60 * 60 * 24 * 14, // 14 days in ms,
+            httpOnly: true
+        } );
+        res.redirect( "/" );
+    }
+    else res.redirect( "/login/?error='username or password incorrect!'" );
+} );
 
 router.use( ( req, res, next ) => {
     if( req.user ) next();
@@ -36,10 +55,10 @@ function process_upload( oldPath, name, directory ) {
     name = escape.strict( name );
     directory = escape.path( directory );
 
-    if( !fs.existsSync( path.join( wwwroot, directory ) ) )
+    if( !fs.existsSync( path.join( config.root_dir, directory ) ) )
         return;
 
-    let newPath = path.join( wwwroot, directory, name );
+    let newPath = path.join( config.root_dir, directory, name );
     fs.renameSync( oldPath, newPath );
 }
 
@@ -51,7 +70,7 @@ router.post( "/folder", ( req, res ) => {
     }
         
     directory = escape.path( req.body.directory );
-    let dir = path.join( wwwroot, directory );
+    let dir = path.join( config.root_dir, directory );
     mkdirp.sync( dir );
     res.sendStatus( 200 );
 } );

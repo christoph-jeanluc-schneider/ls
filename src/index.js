@@ -12,5 +12,4 @@ if( !fs.existsSync( tmp ) )
 
 require( "./modules/database.js" ).init();
 require( "./modules/user.js" );
-require( "./modules/file.js" );
 require( "./server.js" );
