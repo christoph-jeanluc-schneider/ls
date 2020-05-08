@@ -5,9 +5,10 @@ block view
         div
             if !user_logged_in
                 a.float-right.button(href="/login") Log in
-            h1=title
+            a(href="/")
+                h1=title
 
-    section
+    //- section
         button.mr create folder
         button.mr upload file
 
@@ -26,6 +27,9 @@ block view
             p
                 span &#128196;&nbsp;
                 a(href="/download?file="+file.path download=file.name )=file.name
+
+        if dir_info.error
+            p.error=dir_info.error
 
     if user_logged_in
         footer
