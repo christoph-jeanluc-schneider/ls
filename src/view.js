@@ -40,21 +40,9 @@ router.get( "/", ( req, res, next ) => {
     }
 
     res.render( "index", options );
-} )
+} );
 
-function _diskspace() {
-    let str = "";
-    try {
-        let info = disk.checkSync( "/" );
-        let mb = numbers.format( ( info.available / 1000000 ), 3 );
-        str = `${numbers.format( info.available )} Bytes (${mb} MB)`;
-    } catch( error ) {
-        str = `<span class="error">${error}`;
-    }
-    return str;
-}
-
-router.get( "/download", ( req, res, next ) => {
+router.get( "/inspect", ( req, res, next ) => {
     if( !req.user ) {
         // largest wikipedia article: 'List of named minor planets (numerical)'
         res.redirect( "https://en.wikipedia.org/w/index.php?oldid=752675586" );

@@ -3,7 +3,9 @@ extends /common/layout.pug
 block view
     header
         div
-            if !user_logged_in
+            if user_logged_in
+                a.float-right.button(href="/api/logout") Log out
+            else
                 a.float-right.button(href="/login") Log in
             a(href="/")
                 h1=title
@@ -26,7 +28,7 @@ block view
         each file in dir_info.files
             p
                 span &#128196;&nbsp;
-                a(href="/download?file="+file.path download=file.name )=file.name
+                a(href="/inspect?file="+file.path target="_blank" rel="noopener noreferrer" )=file.name
 
         if dir_info.error
             p.error=dir_info.error
